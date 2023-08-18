@@ -1,0 +1,42 @@
+Configuring Node (also known as a build agent or slave) in Jenkins allows you to distribute your build and deployment tasks across multiple machines, enabling parallel and distributed builds. Here's how you can configure a Node in Jenkins:
+
+Prerequisites:
+
+    Make sure you have Jenkins installed and running.
+    You need to have SSH access to the machine you want to configure as a Jenkins Node.
+
+Steps:
+
+    Install the "SSH Agent" Plugin:
+    Go to "Manage Jenkins" -> "Manage Plugins" -> "Available" tab, and search for "SSH Agent" plugin. Install it if it's not already installed. This plugin is essential for communicating with remote Nodes via SSH.
+
+    Create a New Node:
+        Go to "Manage Jenkins" -> "Manage Nodes and Clouds" -> "New Node".
+        Enter a name for the Node (e.g., "Build Node 1").
+        Choose "Permanent Agent".
+        Click "OK".
+
+    Configure Node Details:
+        In the Node configuration page, enter the following details:
+            Remote root directory: This is the directory on the Node machine where Jenkins will perform its work.
+            Labels: Labels are used to specify where certain jobs should run. For example, if you label a Node with "linux" and a job with "linux", the job will only run on Nodes with that label.
+            Launch method: Choose "Launch agent via SSH".
+            Host: Enter the IP address or hostname of the Node machine.
+            Credentials: Click "Add" to add SSH credentials for the Node machine. Provide the SSH private key, username, and passphrase if applicable.
+            Host Key Verification: Choose "Non verifying Verification Strategy" if you don't want Jenkins to verify the host key of the Node (not recommended for security reasons).
+
+    Advanced Node Properties (Optional):
+        You can set additional properties like the number of executors (parallel build capacity) for the Node, custom workspace location, etc.
+
+    Save and Verify:
+        Click "Save" to save the Node configuration.
+        You can also click "Test Connection" to verify if Jenkins can successfully connect to the Node via SSH.
+
+    Online the Node:
+        Once the configuration is saved, you will be redirected to the "Nodes" page. Here, you will see the list of configured Nodes.
+        Click on the Node you just configured, and then click "Launch" to bring the Node online.
+
+    Assign Jobs to the Node:
+        In your Jenkins job configurations, you can now specify the label you assigned to the Node. This will ensure that those jobs are executed on the configured Node.
+
+Remember that the process might vary slightly depending on the Jenkins version and any changes in plugin interfaces. Always refer to the official Jenkins documentation or resources for the most accurate and up-to-date instructions.
