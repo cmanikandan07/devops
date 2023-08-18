@@ -1,0 +1,44 @@
+java -version
+sudo apt install openjdk-8-jre-headless
+sudo apt-get install wget
+sudo apt install jenkins
+ sudo apt update
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key |sudo gpg --dearmor -o /usr/share/keyrings/jenkins.gpg
+sudo sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins.gpg] http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo snap install curl 
+
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+ sudo apt-get install jenkins
+sudo systemctl start jenkins.service
+sudo systemctl status jenkins
+jenkins -version
+
+
+sudo groupadd tomcat
+sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+cd /tmp
+curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.tar.gz
+sudo mkdir /opt/tomcat
+cd /opt/tomcat
+sudo tar xzvf /tmp/apache-tomcat-9.0.*tar.gz -C /opt/tomcat --strip-components=1
+sudo apt install git
+git --version
+sudo apt install maven
+mvm --version
+//wget -q -O -  https://pkg.jenkins.io/debain-stable/jenkins.io.key | sudo apt-key add -
+sudo apt install wine64
+wget https://pkg.jenkins.io/debian-stable/jenkins.io.key
+apt-key add jenkins.io.key
+echo "deb https://pkg.jenkins.io/debian-stable binary/" | tee /etc/apt/sources.list.d/jenkins.list
+tee: /etc/apt/sources.list.d/jenkins.list: Permission denied
+deb https://pkg.jenkins.io/debian-stable binary/
+
+ sudo ufw allow 8080
+sudo ufw enable
+
